@@ -1,0 +1,8 @@
+{{ with .Site.Params.Umami.WebsiteID }}
+<script
+    async
+    defer
+    data-website-id="{{ . }}"
+    src="{{ $.Site.Params.Umami.scriptUrl }}"
+></script>
+{{ end }}
