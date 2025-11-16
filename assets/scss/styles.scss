@@ -376,11 +376,25 @@ footer {
 
 .project-image {
   flex: 0 0 auto;
+  width: 200px;
+  position: relative;
+}
+
+.project-image img,
+.project-image video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
 
 .project-image img {
-  width: 100%;
-  display: block;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 2;
+}
+.project-image video {
+  z-index: 1;
 }
 
 .project-info {
