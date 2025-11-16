@@ -1,0 +1,54 @@
+<div class="project-item">
+  <div class="project-image">
+    <img src="{{ .Params.image }}" alt="{{ .Params.title }}">
+  </div>
+
+  <div class="project-info">
+    <!-- Title with optional link -->
+    {{ if .Params.link }}
+      <a href="{{ .Params.link }}" class="project-title">{{ .Params.title }}</a>
+    {{ else }}
+      <span class="project-title">{{ .Params.title }}</span>
+    {{ end }}
+
+    <!-- Subtitle / summary -->
+    {{ if .Params.subtitle }}
+      <div class="project-subtitle">{{ .Params.subtitle }}</div>
+    {{ end }}
+
+    <!-- Date -->
+    {{ if .Params.date }}
+      <time class="project-date">{{ dateFormat "Jan 2006" .Params.date }}</time>
+    {{ end }}
+
+    <!-- Authors / collaborators -->
+    {{ if .Params.authors }}
+      <div class="project-authors">
+        {{ range $index, $author := .Params.authors }}
+          {{ if $index }}, {{ end }}
+          {{ if $author.link }}
+            <a href="{{ $author.link }}">{{ $author.name }}</a>
+          {{ else }}
+            {{ $author.name }}
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+
+    <!-- Links -->
+    {{ if .Params.links }}
+      <div class="project-links">
+        {{ range $index, $l := .Params.links }}
+          {{ if $index }} / {{ end }}
+          <a href="{{ $l.url }}">{{ $l.text }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+
+    <!-- Body -->
+    <div class="project-body">
+      {{ .Content | safeHTML }}
+    </div>
+  </div>
+</div>
+

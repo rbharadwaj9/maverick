@@ -1,0 +1,18 @@
+{{ if gt (len ( where .Site.RegularPages "Section" "news" )) 0 }}
+{{ $limit := .Site.Params.News.NumNews | default 3 }}
+  <section class="news-section">
+    <h2>News</h2>
+
+    {{ range (first $limit (where .Site.RegularPages "Section" "news").ByDate.Reverse) }}
+      <article class="news-item">
+        <div class="news-content">
+          <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "01-2006" .Date }}</time>&nbsp;
+          <!-- <i class="{{ .Params.icon }} news-summary"></i> -->
+          <span class="news-summary">{{ .Summary | safeHTML }}</span>
+          <!-- <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "01-2006" .Date }}</time>&nbsp; -->
+          <!-- <a href="{{ .Permalink }}">{{ .Title }}</a> -->
+        </div>
+      </article>
+    {{ end }}
+  </section>
+{{ end }}

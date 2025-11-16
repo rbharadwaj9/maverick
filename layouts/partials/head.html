@@ -16,9 +16,13 @@
     <link rel="alternate" type="application/json" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/feed.json" />
     <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
+
+    <!-- Font-Awesome -->
+    <link href="font-awesome/7.1.0/css/all.min.css" rel="stylesheet">
+
     {{ $styles := resources.Get "scss/styles.scss" | toCSS (dict "outputStyle" "compressed") | minify }}
     <style>{{ $styles.Content | safeCSS }}</style>
-  
+
     {{ if .IsHome -}}
     <script type="application/ld+json">
     {
@@ -84,20 +88,20 @@
         "keywords" : [ {{ range $index, $tag := .Params.tags }}{{ if $index }}, {{ end }}"{{ $tag }}" {{ end }}]
     }
     </script>
-    {{ end }} 
+    {{ end }}
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const burger = document.querySelector('.burger');
             const nav = document.querySelector('.nav-menu');
             const header = document.querySelector('header');
-        
+
             if (burger) {
                 burger.addEventListener('click', () => {
                     nav.classList.toggle('active');
                     header.classList.toggle('menu-open');
                 });
-        
+
                 // Close menu when clicking outside
                 document.addEventListener('click', (e) => {
                     if (!header.contains(e.target) && nav.classList.contains('active')) {
@@ -107,5 +111,5 @@
                 });
             }
         });
-    </script> 
+    </script>
   </head>

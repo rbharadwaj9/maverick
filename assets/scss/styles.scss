@@ -9,10 +9,20 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding: 2rem;
     // background: hsla(93, 0%, 96%, 1.00);
     background: #fffdfa;
     color: #000;
+}
+
+.site {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+main {
+  padding: 2rem;
 }
 
 .skip-link {
@@ -85,7 +95,7 @@ header {
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                
+
                 li {
                     display: block;
                     font-size: 1.2rem;
@@ -162,6 +172,10 @@ a.heading-link {
     text-decoration: none
 }
 
+a.no-underline {
+    text-decoration: none
+}
+
 pre {
     padding: .5rem;
     overflow: auto;
@@ -208,6 +222,7 @@ ul, ol {
 .content {
     max-width: 70ch;
     margin: 0 auto;
+    // min-height: 100vh;
     // text-align: justify;
 }
 
@@ -302,8 +317,8 @@ img {
 }
 
 .avatar {
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
     position: relative;
     margin: -10px 0 0 15px;
     float: right;
@@ -323,4 +338,88 @@ th, td {
 
 th {
     background-color: #f2f2f2;
+}
+
+// .news-content p {
+//   display: inline;   /* make it inline */
+//   margin: 0;         /* remove block margins */
+//   padding: 0;        /* optional */
+// }
+
+.news-content {
+  display: flex;         /* horizontal row */
+  flex-wrap: nowrap;     /* prevent summary wrapping under date */
+  align-items: top;   /* vertical alignment */
+  gap: 0.5rem;           /* space between date and summary */
+}
+
+.news-summary p {
+  display: inline;       /* override Hugo’s <p> if it exists */
+  align-items: top;
+  margin: 0;
+  padding: 0;        /* optional */
+}
+
+footer {
+  background-color: #fafafa;
+  border-top: thin solid #f3f3f3;
+  color: #7a7a7a;
+  font-size: 0.75rem;
+  font-weight: 300;
+  padding: 2rem;
+  text-align: center;
+}
+
+// PROJECT RELATED
+.project-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.project-image {
+  flex: 0 0 20%;
+}
+
+.project-image img {
+  width: 100%;
+  display: block;
+}
+
+.project-info {
+  flex: 1;
+}
+
+.project-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: block;
+}
+
+.project-subtitle {
+  font-style: italic;
+  margin-top: 0.2rem;
+  color: #555;
+}
+
+.project-date {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.project-authors {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.project-links {
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.project-body {
+  margin-top: 0.5rem;
 }
