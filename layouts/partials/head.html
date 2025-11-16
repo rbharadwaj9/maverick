@@ -8,6 +8,7 @@
     {{ template "_internal/opengraph.html" . }}
     {{ template "_internal/schema.html" . }}
     {{ template "_internal/google_analytics.html" . }}
+    <meta property="og:image" content="{{ .Site.BaseURL}}/images/favicon.png">
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="icon" href="{{ .Site.BaseURL }}/images/favicon.ico">
     <link rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/atom.xml" />
