@@ -14,7 +14,7 @@
 
         <!-- Projects Section -->
         {{ if gt (len ( where .Site.RegularPages "Section" "projects" )) 0 }}
-        <h2>Projects</h2>
+        <h2 id="projects-section">Projects</h2>
         <section class="projects-section">
           {{ range (where .Site.RegularPages "Section" "projects").ByDate.Reverse }}
             {{ partial "project-item.html" . }}

@@ -1,17 +1,17 @@
 *, :after, :before {
-    box-sizing: border-box;
-    padding: 0;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 body {
-    // font: 1rem/1.5 -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
-    font: 1rem/1.5 "Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    // background: hsla(93, 0%, 96%, 1.00);
-    background: #fffdfa;
-    color: #000;
+  // font: 1rem/1.5 -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+  font: 1rem/1.5 "Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // background: hsla(93, 0%, 96%, 1.00);
+  background: #fffdfa;
+  color: #000;
 }
 
 .site {
@@ -25,19 +25,26 @@ main {
   padding: 2rem;
 }
 
+/* Reduce padding on small devices */
+@media (max-width: 500px) {
+  main {
+    padding: 1rem; /* Reduce padding from 2rem to 1rem */
+  }
+}
+
 .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    //margin: 1.5rem 0;
-    background: #eee;
-    //color: white;
-    //padding: 1.5rem;
-    z-index: 100;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  //margin: 1.5rem 0;
+  background: #eee;
+  //color: white;
+  //padding: 1.5rem;
+  z-index: 100;
 }
 
 .skip-link:focus {
-    top: 0;
+  top: 0;
 }
 
 // h1, h2, h3, h4, h5, strong, b {
@@ -47,297 +54,318 @@ main {
 // }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-bottom: 1rem;
 
+  .burger {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #000;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+  }
+
+  @media (max-width: 768px) {
     .burger {
-        display: none;
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-
-        span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: #000;
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
+      display: block;
+      z-index: 2;
     }
 
-    @media (max-width: 768px) {
-        .burger {
-            display: block;
-            z-index: 2;
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100vh;
+      background: #fffdfa;
+      padding: 2rem;
+      transition: 0.3s ease;
+      z-index: 1;
+
+      &.active {
+        right: 0;
+      }
+
+      ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        li {
+          display: block;
+          font-size: 1.2rem;
+          border-bottom: 1px dotted black;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background: #fffdfa;
-            padding: 2rem;
-            transition: 0.3s ease;
-            z-index: 1;
-
-            &.active {
-                right: 0;
-            }
-
-            ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-
-                li {
-                    display: block;
-                    font-size: 1.2rem;
-                    border-bottom: 1px dotted black;
-                    height: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
-        }
-
-        &.menu-open {
-            .burger {
-                span:first-child {
-                    transform: rotate(45deg) translate(5px, 6px);
-                }
-                span:nth-child(2) {
-                    opacity: 0;
-                }
-                span:last-child {
-                    transform: rotate(-45deg) translate(5px, -6px);
-                }
-            }
-        }
+      }
     }
+
+    &.menu-open {
+      .burger {
+        span:first-child {
+          transform: rotate(45deg) translate(5px, 6px);
+        }
+        span:nth-child(2) {
+          opacity: 0;
+        }
+        span:last-child {
+          transform: rotate(-45deg) translate(5px, -6px);
+        }
+      }
+    }
+  }
 }
 
 header a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 header ul {
-    list-style-type: none;
-    padding: 0;
-    //border-right: 1px solid #edf2f7;
+  list-style-type: none;
+  padding: 0;
+  //border-right: 1px solid #edf2f7;
 
 }
 
 header li, header a {
-    //margin-bottom: .2rem;
-    //text-align: right;
-    //margin-right: 2rem;
-    display: inline;
+  //margin-bottom: .2rem;
+  //text-align: right;
+  //margin-right: 2rem;
+  display: inline;
 }
 
 .link {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
 }
 
 .time {
-	font-variant-numeric: tabular-nums;
-	white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 blockquote {
-    border-left: 5px solid #eee;
-    padding-left: 1rem;
-    margin: 0;
+  border-left: 5px solid #eee;
+  padding-left: 1rem;
+  margin: 0;
 }
 
 a,
 a:visited {
-    color: inherit;
+  color: inherit;
 }
 
 a:hover,
 a.heading-link {
-    text-decoration: none
+  text-decoration: none
 }
 
 a.no-underline {
-    text-decoration: none
+  text-decoration: none
 }
 
 pre {
-    padding: .5rem;
-    overflow: auto;
-    overflow-x: scroll;
-    overflow-wrap: normal;
+  padding: .5rem;
+  overflow: auto;
+  overflow-x: scroll;
+  overflow-wrap: normal;
 }
 
 code, pre {
-    font-family: San Francisco Mono, Monaco, "Consolas", "Lucida Console","DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
-    font-size: normal;
-    font-size: small;
-    background: #eee
+  font-family: San Francisco Mono, Monaco, "Consolas", "Lucida Console","DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  font-size: normal;
+  font-size: small;
+  background: #eee
 }
 
 code {
-    margin: .1rem;
-    border: none;
-    overflow: visible;
-    overflow-wrap: anywhere;
+  margin: .1rem;
+  border: none;
+  overflow: visible;
+  overflow-wrap: anywhere;
 }
 
 ul {
-    list-style-type: square;
+  list-style-type: square;
 }
 
 ul, ol {
-    padding-left: 1.2rem;
+  padding-left: 1.2rem;
 }
 
 .list {
-    line-height: 2;
-    list-style-type: none;
-    padding-left: 0;
+  line-height: 2;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .list li {
-    padding-bottom: .1rem
+  padding-bottom: .1rem
 }
 
 .meta {
-    color: #777
+  color: #777
 }
 
 .content {
-    max-width: 70ch;
-    margin: 0 auto;
-    // min-height: 100vh;
-    // text-align: justify;
+  max-width: 70ch;
+  margin: 0 auto;
+  // min-height: 100vh;
+  // text-align: justify;
 }
 
 h2.post {
-    padding-top: .5rem;
+  padding-top: .5rem;
 }
 
 header ul a:first-child {
-    padding-left: 1rem;
+  padding-left: 1rem;
 }
 
 .nav {
-    height: 1px;
-    background: #000;
-    content: '';
-    max-width: 10%;
+  height: 1px;
+  background: #000;
+  content: '';
+  max-width: 10%;
 }
 
 .list li {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 
 .list li time {
-    flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .hr-list {
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-right: .5rem;
-    margin-left: .5rem;
-    height: 1px;
-    border: 0;
-    border-bottom: 1px dotted #ccc;
-    flex: 1 0 1rem;
-    //opacity: .25;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: .5rem;
+  margin-left: .5rem;
+  height: 1px;
+  border: 0;
+  border-bottom: 1px dotted #ccc;
+  flex: 1 0 1rem;
+  //opacity: .25;
 }
 
 .m,
 hr {
-    border: 0;
-    margin: 3rem 0
+  border: 0;
+  margin: 3rem 0
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 
 .post-date {
-    margin: 5% 0 5%;
+  margin: 5% 0 5%;
 }
 
 .index-date {
-    color: #9a9a9a;
+  color: #9a9a9a;
 }
 
 .animate-blink {
-    animation: opacity 1s infinite;
-    opacity: 1;
-    // margin-left: -1%;
+  animation: opacity 1s infinite;
+  opacity: 1;
+  // margin-left: -1%;
 }
 
 @keyframes opacity {
-    0% {
-        opacity: 1;
-    }
+0% {
+  opacity: 1;
+}
 
-    50% {
-        opacity: 0.5;
-    }
+50% {
+  opacity: 0.5;
+}
 
-    100% {
-        opacity: 0;
-    }
+100% {
+  opacity: 0;
+}
 }
 
 .tags {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tags ul {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .tags li {
-    display: inline;
+  display: inline;
 }
+//
+// .avatar {
+//     height: 200px;
+//     width: 200px;
+//     position: relative;
+//     margin: -10px 0 0 15px;
+//     float: right;
+//     border-radius: 50%;
+// }
 
 .avatar {
+  /* Keep the core shape and positioning for large screens */
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  position: relative;
+  float: right; /* Use Flexbox/Grid on the parent instead of float if possible */
+  margin: -10px 0 0 15px; /* Adjust margin for large screens */
+}
+
+@media (max-width: 768px) {
+  .avatar {
+    /* Center and resize for smaller screens */
+    float: none; /* Remove float */
+    display: block; /* Make it a block element to center */
+    margin: 1rem auto; /* Center horizontally and add vertical margin */
+    width: 150px; /* Reduce fixed size */
     height: 150px;
-    width: 150px;
-    position: relative;
-    margin: -10px 0 0 15px;
-    float: right;
-    border-radius: 50%;
+  }
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
 th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 footer {
@@ -375,9 +403,14 @@ footer {
 }
 
 .project-image {
-  flex: 0 0 auto;
-  width: 200px;
+  /* Change fixed width to a relative size */
+  flex: 0 0 25%; /* Let it take 25% of the container width */
+  max-width: 200px; /* But don't let it get bigger than 200px */
   position: relative;
+  /* You need to give the container a height for the absolute image/video to work correctly. */
+  /* Use padding-top for a common aspect ratio (e.g., 75% for 4:3) */
+  // padding-top: 15%; /* Set height relative to width (e.g., a short placeholder height) */
+  /* If you want a specific aspect ratio, padding-top: (height/width * 100)%; */
 }
 
 .project-image img,
@@ -399,6 +432,35 @@ footer {
 
 .project-info {
   flex: 1;
+}
+
+@media (max-width: 768px) {
+  .project-item {
+    flex-direction: column; /* Stack vertically */
+  }
+
+  .project-image {
+    /* On small screens, let the image container take the full width */
+    flex: auto;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2rem; /* Add space below the image */
+  }
+
+  .project-image video {
+    display: none;
+  }
+
+  .project-image img {
+    display: block; /* Make sure it's block-level for sizing */
+    opacity: 1 !important; /* Force it to be visible */
+    position: relative; /* Remove absolute positioning if it causes issues */
+    height: 100%; /* Use height from the container */
+  }
+
+  .project-info {
+    flex: auto; /* Allow the text info to flow normally */
+  }
 }
 
 .project-title {

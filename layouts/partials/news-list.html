@@ -1,7 +1,7 @@
 {{ if gt (len ( where .Site.RegularPages "Section" "news" )) 0 }}
 {{ $limit := .Site.Params.News.NumNews | default 3 }}
   <section class="news-section">
-    <h2>News</h2>
+    <h2 id="news-section">News</h2>
 
     {{ range (first $limit (where .Site.RegularPages "Section" "news").ByDate.Reverse) }}
       <article class="news-item">
