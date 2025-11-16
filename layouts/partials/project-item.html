@@ -1,6 +1,12 @@
 <div class="project-item">
   <div class="project-image">
-    <img src="{{ .Params.image }}" alt="{{ .Params.title }}">
+    {{ with .Resources.GetMatch "images/cover.png" }}
+        {{ $thumb := .Resize "200x" }}
+        <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}">
+    {{ else }}
+        <!-- optional fallback if cover.png is missing -->
+        <p>No cover image available.</p>
+    {{ end }}
   </div>
 
   <div class="project-info">
@@ -13,13 +19,28 @@
 
     <!-- Subtitle / summary -->
     {{ if .Params.subtitle }}
-      <div class="project-subtitle">{{ .Params.subtitle }}</div>
+      <div class="project-subtitle">{{ .Params.subtitle | markdownify }}</div>
     {{ end }}
 
     <!-- Date -->
-    {{ if .Params.date }}
-      <time class="project-date">{{ dateFormat "Jan 2006" .Params.date }}</time>
-    {{ end }}
+    {{ $start := .Params.startDate }}
+    {{ $end := .Params.endDate }}
+    {{ $date := .Date }}
+    <span class="project-date">
+        {{ if $start }}
+            {{ $start | dateFormat "Jan 2006" }} –
+            {{ if $end }}
+                {{ $end | dateFormat "Jan 2006" }}
+            {{ else }}
+                Present
+            {{ end }}
+        {{ else if $date }}
+            {{ $date | dateFormat "Jan 2006" }}
+        {{ else }}
+            <!-- optional fallback if no date at all -->
+            Unknown
+        {{ end }}
+    </span>
 
     <!-- Authors / collaborators -->
     {{ if .Params.authors }}
@@ -38,16 +59,21 @@
     <!-- Links -->
     {{ if .Params.links }}
       <div class="project-links">
-        {{ range $index, $l := .Params.links }}
-          {{ if $index }} / {{ end }}
-          <a href="{{ $l.url }}">{{ $l.text }}</a>
+        {{ range $index, $link := .Params.links }}
+          {{ if $index }} | {{ end }}
+          {{ $file := $.Resources.GetMatch $link.url }}
+          {{ if $file }}
+            [<a href="{{ $file.RelPermalink }}">{{ $link.text }}</a>]
+          {{ else }}
+            [<a href="{{ $link.url }}">{{ $link.text }}</a>]
+          {{ end }}
         {{ end }}
       </div>
     {{ end }}
 
     <!-- Body -->
     <div class="project-body">
-      {{ .Content | safeHTML }}
+      {{ .Summary | safeHTML }}
     </div>
   </div>
 </div>

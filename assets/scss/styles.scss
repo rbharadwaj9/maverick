@@ -340,26 +340,6 @@ th {
     background-color: #f2f2f2;
 }
 
-// .news-content p {
-//   display: inline;   /* make it inline */
-//   margin: 0;         /* remove block margins */
-//   padding: 0;        /* optional */
-// }
-
-.news-content {
-  display: flex;         /* horizontal row */
-  flex-wrap: nowrap;     /* prevent summary wrapping under date */
-  align-items: top;   /* vertical alignment */
-  gap: 0.5rem;           /* space between date and summary */
-}
-
-.news-summary p {
-  display: inline;       /* override Hugo’s <p> if it exists */
-  align-items: top;
-  margin: 0;
-  padding: 0;        /* optional */
-}
-
 footer {
   background-color: #fafafa;
   border-top: thin solid #f3f3f3;
@@ -370,16 +350,32 @@ footer {
   text-align: center;
 }
 
+// NEWS RELATED
+.news-content {
+  display: flex;         /* horizontal row */
+  flex-wrap: nowrap;     /* prevent summary wrapping under date */
+  align-items: flex-start;   /* vertical alignment */
+  gap: 0.5rem;           /* space between date and summary */
+}
+
+.news-summary p {
+  display: inline;       /* override Hugo’s <p> if it exists */
+  align-items: top;
+  margin: 0;
+  padding: 0;        /* optional */
+}
+
 // PROJECT RELATED
 .project-item {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  flex-wrap: nowrap;     /* prevent summary wrapping under date */
   align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .project-image {
-  flex: 0 0 20%;
+  flex: 0 0 auto;
 }
 
 .project-image img {
@@ -399,13 +395,13 @@ footer {
 
 .project-subtitle {
   font-style: italic;
-  margin-top: 0.2rem;
-  color: #555;
+  font-size: 0.9rem;
+  // color: #555;
 }
 
 .project-date {
   display: block;
-  margin-top: 0.2rem;
+  // margin-top: 0.2rem;
   font-size: 0.85rem;
   color: #777;
 }
@@ -417,9 +413,10 @@ footer {
 
 .project-links {
   font-size: 0.9rem;
-  margin-top: 0.2rem;
+  // margin-top: 0.2rem;
 }
 
 .project-body {
   margin-top: 0.5rem;
+  font-size: smaller;
 }
